@@ -1,0 +1,21 @@
+<h2>Clients</h2>
+<!-- Formulaire ajout client -->
+<div class="form-add">
+  <input type="text" placeholder="Prenom & Nom" [(ngModel)]="newClient.name" />
+  <input type="email" placeholder="Email" [(ngModel)]="newClient.email" />
+  <button (click)="addClient()">Ajouter</button>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.name }}</td>
+      <td>{{ client.email }}</td>
+    </tr>
+  </tbody>
+</table>

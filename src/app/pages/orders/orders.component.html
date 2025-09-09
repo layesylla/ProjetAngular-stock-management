@@ -1,0 +1,43 @@
+<h2>Gestion des Commandes</h2>
+
+<form (ngSubmit)="editOrderId ? updateOrder() : addOrder()" class="mb-3">
+  <div class="row g-2">
+    <div class="col">
+      <input type="text" [(ngModel)]="newOrder.product" name="product" class="form-control" placeholder="Produit" required>
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="newOrder.quantity" name="quantity" class="form-control" placeholder="Quantité" required>
+    </div>
+    <div class="col">
+      <input type="date" [(ngModel)]="newOrder.date" name="date" class="form-control" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">{{ editOrderId ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button *ngIf="editOrderId" type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Produit</th>
+      <th>Quantité</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of orders">
+      <td>{{ o.id }}</td>
+      <td>{{ o.product }}</td>
+      <td>{{ o.quantity }}</td>
+      <td>{{ o.date }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" (click)="editOrder(o)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteOrder(o.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

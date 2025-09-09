@@ -1,0 +1,33 @@
+<h2>Gestion des Marques</h2>
+
+<form (ngSubmit)="editBrandId ? updateBrand() : addBrand()" class="mb-3">
+  <div class="row g-2">
+    <div class="col">
+      <input type="text" [(ngModel)]="newBrand.name" name="name" class="form-control" placeholder="Nom de la marque" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">{{ editBrandId ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button *ngIf="editBrandId" type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let b of brands">
+      <td>{{ b.id }}</td>
+      <td>{{ b.name }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" (click)="editBrand(b)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteBrand(b.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

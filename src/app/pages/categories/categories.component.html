@@ -1,0 +1,33 @@
+<h2>Gestion des Catégories</h2>
+
+<form (ngSubmit)="editCategoryId ? updateCategory() : addCategory()" class="mb-3">
+  <div class="row g-2">
+    <div class="col">
+      <input type="text" [(ngModel)]="newCategory.name" name="name" class="form-control" placeholder="Nom catégorie" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">{{ editCategoryId ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button *ngIf="editCategoryId" type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of categories">
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" (click)="editCategory(c)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteCategory(c.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

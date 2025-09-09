@@ -1,0 +1,38 @@
+<h2>Gestion des Stocks</h2>
+
+<form (ngSubmit)="editStockId ? updateStock() : addStock()" class="mb-3">
+  <div class="row g-2">
+    <div class="col">
+      <input type="text" [(ngModel)]="newStock.product" name="product" class="form-control" placeholder="Produit" required>
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="newStock.quantity" name="quantity" class="form-control" placeholder="Quantité" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">{{ editStockId ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button *ngIf="editStockId" type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Produit</th>
+      <th>Quantité</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of stocks">
+      <td>{{ s.id }}</td>
+      <td>{{ s.product }}</td>
+      <td>{{ s.quantity }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" (click)="editStock(s)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteStock(s.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

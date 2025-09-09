@@ -1,0 +1,51 @@
+<h2>Gestion des Produits</h2>
+
+<form (ngSubmit)="editProductId ? updateProduct() : addProduct()" class="mb-3">
+  <div class="row g-2">
+    <div class="col">
+      <input type="text" [(ngModel)]="newProduct.name" name="name" class="form-control" placeholder="Nom" required>
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="newProduct.price" name="price" class="form-control" placeholder="Prix" required>
+    </div>
+    <div class="col">
+      <input type="number" [(ngModel)]="newProduct.quantity" name="quantity" class="form-control" placeholder="Quantité" required>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success">{{ editProductId ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button *ngIf="editProductId" type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </div>
+  </div>
+</form>
+<!-- Barre de recherche -->
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="Rechercher un produit..."
+    [(ngModel)]="searchTerm"
+  />
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Prix (€)</th>
+      <th>Quantité</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of filteredProducts">
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.quantity }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm" (click)="editProduct(p)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteProduct(p.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
